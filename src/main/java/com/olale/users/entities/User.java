@@ -1,38 +1,38 @@
 package com.olale.users.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.relation.Role;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
-    @Column(unique = true)
+    private Long userId;
+
     private String username;
     private String password;
-    private Boolean enabled;
+    private boolean enabled;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
+
+    public User(Long userId, String username, String password, boolean enabled, List<Role> roles) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+    }
 }

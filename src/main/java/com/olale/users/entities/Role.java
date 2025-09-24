@@ -14,6 +14,11 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long role_id;
-    private String role;
+    private Long roleId;
+    private String roleName;
+
+    public Role(Long roleId, String roleName) {
+        this.roleId = roleId;
+        this.roleName = roleName;
+    }
 }
