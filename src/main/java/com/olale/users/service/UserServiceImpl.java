@@ -1,5 +1,7 @@
 package com.olale.users.service;
 
+import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,5 +55,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUsername(String username) {
         return userRep.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userRep.findAll();
     }
 }
