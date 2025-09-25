@@ -14,7 +14,7 @@ public class SecurityBeansConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    // ⚠️ Laisser UN SEUL bean AuthenticationManager dans tout le projet
+    // Laisser UN SEUL bean AuthenticationManager dans tout le projet
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
